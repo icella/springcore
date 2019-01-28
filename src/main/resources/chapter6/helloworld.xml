@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="helloWorldService" class="cn.javass.spring.chapter6.service.impl.HelloWorldService"/>
+
+    <bean id="aspect" class="cn.javass.spring.chapter6.aop.HelloWorldAspect"/>
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* cn.javass..*.*(..))"/>
+        <aop:aspect ref="aspect">
+            <aop:before method="beforeAdvice" pointcut-ref="pointcut"/>
+
+            <!--切入点除了使用pointcut-ref属性来引用已经存在的切入点，也可以使用pointcut属性来定义-->
+            <aop:after method="afterFinallyAdvice" pointcut="execution(* cn.javass..*.*(..))"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
