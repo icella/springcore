@@ -75,4 +75,13 @@ public class AopTest {
         introductionService.induct();
         System.out.println("========================");
     }
+
+    @Test
+    public void testSchemaAdvisor(){
+        System.out.println("========================");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("chapter6/advice.xml");
+        IHelloWorldService helloWorldService = ctx.getBean("helloWorldService", IHelloWorldService.class);
+        helloWorldService.sayAdvisorBefore("haha");
+        System.out.println("========================");
+    }
 }

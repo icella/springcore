@@ -17,4 +17,6 @@ public interface IHelloWorldService {
     boolean sayAfterFinally();
 
     void sayAround(String param);
+
+    void sayAdvisorBefore(String param);
 }

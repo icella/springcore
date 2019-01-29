@@ -7,7 +7,11 @@
 
     <bean id="aspect" class="cn.javass.spring.chapter6.aop.HelloWorldAspect"/>
 
+    <bean id="beforeAdvice" class="cn.javass.spring.chapter6.aop.BeforeAdviceImpl"/>
     <aop:config>
+
+        <aop:advisor advice-ref="beforeAdvice" pointcut="execution(* cn.javass..*.sayAdvisorBefore(..))"/>
+
         <aop:aspect ref="aspect">
             <aop:before pointcut="execution(* cn.javass..*.sayBefore(..)) and args(param)"
                         method="beforeAdvice(java.lang.String)"
